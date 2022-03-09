@@ -57,13 +57,15 @@
                 #savecode {
                     left: 100%;
                 }
+                #creategame {
+                    left: auto;
+                }
             </style>
     </head>
     <body>
         <nav style = "position: absolute">
-            <a href = 'javascript: changePage(0);'>Prayer</a>
-            <a href  = 'javascript: changePage(1);'>Movies</a>
-            <a href = 'javascript: changePage(2);'>Q&A</a>
+            <a href = 'javascript: changePage(0);'>Last Game</a>
+            <a href  = 'javascript: changePage(1);'>Next Game</a>
         </nav>
         <h2>Mini<br>NBA</h2>
         <div class = "scene">
@@ -75,6 +77,8 @@
                 </div>
                 <button id = "right_arrow">></button>
             </div>
+            <button id = "creategame">Create Game</button>
+            <br>
             <input id = "savecode">
         </div>
         <script>
