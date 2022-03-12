@@ -38,15 +38,15 @@
                 }
                 #left_arrow {
                     position: absolute;
-                    margin-left: 20.5%;
-                    margin-top: 1.5%;
+                    margin-left: -30%;
+                    margin-top: 10%;
                     background-color: rgb(189, 189, 189);
                     border: none;
                 }
                 #right_arrow {
                     position: absolute;
-                    margin-left: 75.25%;
-                    margin-top: 1.5%;
+                    margin-left: 30%;
+                    margin-top: 10%;
                     background-color: rgb(189, 189, 189);
                     border: none;
                 }
@@ -54,42 +54,95 @@
                     height: 150px;
                     text-align: center;
                 }
-                #savecode {
-                    left: 100%;
+                #contestent1 {
+                    margin-left: 15%;
+                    width: 30%;
+                    position: absolute;
+                }
+                #contestent2 {
+                    margin-left: 50%;
+                    width: 30%;
+                    position: absolute;
+                }
+                #score1 {
+                    margin-left: 25%;
+                    width: 20%;
+                    position: absolute;
+                }
+                #score2 {
+                    margin-left: 50%;
+                    width: 20%;
+                    position: absolute;
                 }
                 #creategame {
-                    left: auto;
+                    margin-left: 40%;
+                    width: 20%;
+                    height: 30px;
+                    border: none;
+                    background-color: rgb(222, 222, 222);
                 }
             </style>
     </head>
     <body>
         <nav style = "position: absolute">
-            <a href = 'javascript: changePage(0);'>Last Game</a>
-            <a href  = 'javascript: changePage(1);'>Next Game</a>
+            <a href = 'javascript: changeGames(-1);'>Last Game</a>
+            <a href  = 'javascript: changeGames(1);'>Next Game</a>
+            <a href = 'javascript: changePage(0);'>Games</a>
+            <a href  = 'javascript: changePage(1);'>N</a>
         </nav>
         <h2>Mini<br>NBA</h2>
         <div class = "scene">
             <div id = "info">
-                <button id = "left_arrow">&lt</button>
+                <button onclick = "changeGames(-1)" id = "left_arrow">&lt</button>
                 <div id = "screen">
                     No Games Yet<br>
                     
                 </div>
-                <button id = "right_arrow">></button>
+                <button onclick = "changeGames(1)" id = "right_arrow">></button>
             </div>
-            <button id = "creategame">Create Game</button>
             <br>
-            <input id = "savecode">
+            <br>
+            <hr>
+            <p class = "center">Constestants</p>
+            <input id = "contestent1">
+            <input id = "contestent2">
+            <br>
+            <p class = "center">Score</p>
+            <input id = "score1">
+            <input id = "score2">
+            <br>
+            <br>
+            <button onclick = "creategame()" id = "creategame">Create Game</button>
+        </div>
+        <div class = "scene">
+            <p>PEM GOES</p>
         </div>
         <script>
             var games = [];
-            
+            var on = 0;
+            function creategame() {
+                games.push(document.getElementById("contestent1").value + " vs " + document.getElementById("contestent2").value + "<br>Score: " + document.getElementById("score1").value + "/" + document.getElementById("score2").value + "<br>")
+                if(games.length > 0) {
+                    document.getElementById("screen").innerHTML = games[on]
+                }
+                document.getElementById("contestent1").value = "";
+                document.getElementById("contestent2").value = "";
+            }
+            function changeGames(i) {
+                on+=i;
+                if(on < 0) {
+                    on = games.length - 1;
+                } else if(on >= games.length) {
+                    on = 0;
+                }
+                if(games.length > 0) {
+                   document.getElementById("screen").innerHTML = games[on]
+                }
+            }
         </script>
         <!--Hide and unhide thigns-->
         <script>
-            
             var scenes = document.getElementsByClassName('scene');
-            
             function changePage(index) {
                 window.scroll(0, 0);
                 for (var i = 0; i < scenes.length ; i++) {
